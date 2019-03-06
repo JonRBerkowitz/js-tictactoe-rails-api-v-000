@@ -12,6 +12,10 @@ const WIN_COMBINATIONS = [
 
 var turn = 0;
 
+$(document).ready(function() {
+  attachListeners();
+});
+
 function player() {
   if (turn == 0 || turn % 2 == 0) {
     return "X";
@@ -29,23 +33,54 @@ function setMessage(message) {
 
 function checkWinner() {
   let grid = $('td').toArray();
+  let win = false;
+
   WIN_COMBINATIONS.some(function(array) {
-    if( grid[array[0].innerHTML == grid[array[1].innerHTML && grid[array[0].innerHTML == grid[array[2].innerHTML ) {
-      return true;
+    if (grid[array[0]].innerHTML != "" && grid[array[0]].innerHTML == grid[array[1]].innerHTML && grid[array[0]].innerHTML == grid[array[2]].innerHTML) {
+      setMessage(`Player ${grid[array[0]].innerHTML} Won!`);
+      return win = true;
     }
   });
-}
 
+  return win;
+}
 
 function doTurn(square) {
   updateState(square)
-  checkWinner();
   turn += 1;
+  if (checkWinner()) {
+    resetGame();
+  } else if (turn == 9) {
+    setMessage("Tie game.");
+    resetGame();
+  }
 }
 
-$(function () {
-  $('#save').on('click', function(event) {
-    event.preventDefault();
-    alert("we r hakerz");
+function resetGame() {
+  $('td').html("");
+  turn = 0;
+}
+
+function attachListeners() {
+  $('#save').on('click', function() {
+    saveGame();
   });
-});
+  $('#clear').on('click', function() {
+    clearBoard();
+  });
+  $('#previous').on('click', function() {
+    previousGames();
+  });
+}
+
+function saveGame() {
+
+}
+
+function clearBoard() {
+
+}
+
+function previousGames() {
+
+}
