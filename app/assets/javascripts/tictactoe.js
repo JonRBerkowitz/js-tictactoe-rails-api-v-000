@@ -63,7 +63,7 @@ function resetGame() {
 
 function attachListeners() {
   $('td').on('click', function() {
-    if (this.html == "") {
+    if (this.text == "") {
     doTurn(this);
   }
   });
