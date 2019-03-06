@@ -63,7 +63,7 @@ function resetGame() {
 
 function attachListeners() {
   $('td').on('click', function() {
-    console.log(this);
+    console.log(this.html);
   });
   $('#save').on('click', function() {
     saveGame();
