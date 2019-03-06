@@ -65,7 +65,7 @@ function attachListeners() {
   $('td').on('click', function() {
     if (this.text == "") {
     doTurn(this);
-  }
+    }
   });
   $('#save').on('click', function() {
     saveGame();
